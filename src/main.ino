@@ -25,18 +25,18 @@ const char* password = "..........";
 #define MQTTPassword        "mqttpass"
 
 #define Category            "speaker"
-#define ClientRoot          Category ## "/" ## MQTTClientId
+#define ClientRoot          Category "/" MQTTClientId
 
 // Some examples on how the routes should be
 // speaker / deviceId / method / submethod / value
-#define CommandTopic        ClientRoot ## "/cmnd/state"
-#define RgbcommandTopic     ClientRoot ## "/cmnd/rgb"
-#define StateTopic          ClientRoot ## "/status/state"
-#define RgdstateTopic       ClientRoot ## "/status/rgd"
-#define WillTopic           ClientRoot ## "/will"
-#define DebugTopic          ClientRoot ## "/debug"
+#define CommandTopic        ClientRoot "/cmnd/state"
+#define RgbCommandTopic     ClientRoot "/cmnd/rgb"
+#define StateTopic          ClientRoot "/status/state"
+#define RgbStateTopic       ClientRoot "/status/rgd"
+#define WillTopic           ClientRoot "/will"
+#define DebugTopic          ClientRoot "/debug"
 
-#define WillTopic           ClientRoot ## "/will"
+#define WillTopic           ClientRoot "/will"
 #define WillQoS             0
 #define WillRetain          false
 char willMessage[] = "clientId has disconnected...";
