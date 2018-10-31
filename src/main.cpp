@@ -10,6 +10,8 @@
 #include <PubSubClient.h>
 #include <OneButton.h>
 
+#include "Secret.h"
+
 /***************************** General - Settings *****************************/
 #define OTA_HOSTNAME                ""   // Leave empty for esp8266-[ChipID]
 #define WIFI_MANAGER_STATION_NAME   ""   // Leave empty for auto generated name ESP + ChipID
@@ -38,6 +40,10 @@ char willMessage[] = "clientId has disconnected...";
 
 WiFiClient wificlient;  // is needed for the mqtt client
 PubSubClient mqttclient;
+
+/***************************** Button - Settings ******************************/
+#define ButtonPin   D5
+OneButton button(ButtonPin, true);
 
 void setupOTA() {
   // Port defaults to 8266
@@ -187,6 +193,7 @@ void setupMQTT() {
   connectMQTT();
 }
 
+
 void setup() {
   Serial.begin(115200);
   Serial.println("Booting");
@@ -194,6 +201,9 @@ void setup() {
   setupWifiManager();
   setupOTA();
   setupMQTT();
+
+  // Assign button functions
+  button.attachClick(void /* insert function name here*/);
 
   Serial.println("Ready");
   Serial.print("IP address: ");
